@@ -58,6 +58,29 @@
     center: [-73.966, 40.772],
     zoom: 12
   });
+
+   // Fill polygons
+    map.addLayer({
+      'id': 'limited-height-fill',
+      'type': 'fill',
+      'source': 'limited-height-zones',
+      'paint': {
+        'fill-color': '#ff69b4',
+        'fill-opacity': 0.5
+      }
+    });
+
+    // Outline
+    map.addLayer({
+      'id': 'limited-height-outline',
+      'type': 'line',
+      'source': 'limited-height-zones',
+      'paint': {
+        'line-color': '#d4007f',
+        'line-width': 2
+      }
+    });
+  
 </script>
 
 </body>
