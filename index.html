@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NYC Zoning Explorer</title>
+  <link href="style.css" rel="stylesheet" />
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+</head>
+<body>
+  <h1>NYC Zoning Explorer</h1>
+  <p>Explore New York City’s zoning districts and learn how different land uses shape the city.</p>
+  <div id="map"></div>
+  <div id="legend"></div>
+
+  <script>
+    // Set your Mapbox access token here
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYWgzODYzIiwiYSI6ImNtOWJ2ZzJoMDBreHIyanBuYmFvb3lvam0ifQ.Zeg12vyxmHuz86vEocSGdw';
+
+    // Initialize the map
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/light-v10',
+      center: [-73.935242, 40.730610], // Centered on NYC
+      zoom: 10
+    });
+
+    map.on('load', () => {
+      // Add GeoJSON zoning data as a source (replace with your actual URL or local file path)
+      map.addSource('zoning', {
+        type: 'geojson',
+        data: 'data/nyc_zoning.geojson' // Make sure this path is correct
+      });
+
+      // Add a layer to visualize the zoning districts
+      map.addLayer({
+        id: 'zoning-layer',
+        type: 'fill',
+        source: 'zoning',
+        paint: {
+          'fill-color': [
+            'match',
+            ['slice', ['get', 'zoning'], 0, 1],
+            'R', '#3182bd', // Residential
+            'C', '#31a354', // Commercial
+            'M', '#fd8d3c', // Manufacturing
+            '#cccccc'       // Default
+          ],
+          'fill-opacity': 0.6
+        }
+      });
+
+      // Add outline for zoning areas
+      map.addLayer({
+        id: 'zoning-outline',
+        type: 'line',
+        source: 'zoning',
+        paint: {
+          'line-color': '#333',
+          'line-width': 0.5
+        }
+      });
+
+      // Popup on click
+      map.on('click', 'zoning-layer', (e) => {
+        const props = e.features[0].properties;
+        new mapboxgl.Popup()
+          .setLngLat(e.lngLat)
+          .setHTML(`<strong>Zoning Code:</strong> ${props.zoning}<br><strong>Borough:</strong> ${props.borough}`)
+          .addTo(map);
+      });
+
+      // Change cursor on hover
+      map.on('mouseenter', 'zoning-layer', () => {
+        map.getCanvas().style.cursor = 'pointer';
+      });
+      map.on('mouseleave', 'zoning-layer', () => {
+        map.getCanvas().style.cursor = '';
+      });
+    });
+  </script>
+</body>
+</html>
