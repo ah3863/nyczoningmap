@@ -58,7 +58,15 @@
     center: [-73.966, 40.772],
     zoom: 12
   });
-
+    
+  
+  map.on('load', () => {
+    // Add your GeoJSON source
+    map.addSource('limited-height-zones', {
+      'type': 'geojson',
+      'data': 'zones.geojson' // Update this path if needed
+    });
+    
    // Fill polygons
     map.addLayer({
       'id': 'limited-height-fill',
