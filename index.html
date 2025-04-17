@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NYC Zoning Explorer</title>
+  <title>NYC Zoning Height Restrictions Explorer</title>
   <link href="style.css" rel="stylesheet" />
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
   <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
 </head>
 <body>
-  <h1>NYC Zoning Explorer</h1>
-  <p>Explore New York City’s zoning districts and learn how different land uses shape the city.</p>
+  <h1>NYC Zoning Height Restrictions Explorer</h1>
+  <p>Explore New York City’s zoning districts and learn about different zoning height restrictions that shape the city.</p>
   <div id="map"></div>
   <div id="legend"></div>
 
@@ -30,7 +30,7 @@
       // Add GeoJSON zoning data as a source (replace with your actual URL or local file path)
       map.addSource('zoning', {
         type: 'geojson',
-        data: 'data/nyc_zoning.geojson' // Make sure this path is correct
+        data: 'data/limited_height.geojson' // Make sure this path is correct
       });
 
       // Add a layer to visualize the zoning districts
