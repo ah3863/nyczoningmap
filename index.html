@@ -15,10 +15,9 @@
   <div id="legend"></div>
 
   <script>
-    // Set your Mapbox access token here
     mapboxgl.accessToken = 'pk.eyJ1IjoiYWgzODYzIiwiYSI6ImNtOWJ2ZzJoMDBreHIyanBuYmFvb3lvam0ifQ.Zeg12vyxmHuz86vEocSGdw';
 
-    // Initialize the map
+    
     const map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/light-v10',
@@ -27,10 +26,9 @@
     });
 
     map.on('load', () => {
-      // Add GeoJSON zoning data as a source (replace with your actual URL or local file path)
       map.addSource('zoning', {
         type: 'geojson',
-        data: 'data/limited_height.geojson' // Make sure this path is correct
+        data: 'data/limited_height.geojson' 
       });
 
       // Add a layer to visualize the zoning districts
