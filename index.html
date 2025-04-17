@@ -9,6 +9,40 @@
   <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
 </head>
 <body>
+ .title-frame {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 15px 20px;
+      border-radius: 8px;
+      max-width: 400px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      z-index: 1;
+    }
+
+    .title-frame h1 {
+      font-size: 20px;
+      margin: 0 0 8px;
+    }
+
+    .title-frame p {
+      font-size: 14px;
+      margin: 0;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<div class="title-frame">
+  <h1>NYC Zoning Height Restrictions Explorer</h1>
+  <p>Explore New York City’s zoning districts and learn about different zoning height restrictions that shape the city.</p>
+</div>
+
+  
   <h1>NYC Zoning Height Restrictions Explorer</h1>
   <p>Explore New York City’s zoning districts and learn about different zoning height restrictions that shape the city.</p>
   <div id="map"></div>
